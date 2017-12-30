@@ -1,11 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Questions",
+  "name": "App to edit the questions available on Entire.Life",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "interobang.png",
+      "sizes": "64x64",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
