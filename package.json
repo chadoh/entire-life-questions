@@ -12,7 +12,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && s3-deploy './build/**' --cwd './build/' --profile questions-deployer --region us-east-1 --bucket questions.entire.life --gzip --etag",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "s3-deploy": "^0.8.0"
   }
 }
