@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './List.css'
 
 export default ({questions}) => (
@@ -14,7 +15,11 @@ export default ({questions}) => (
       {questions.map((question, i) =>
         <tr key={question.id}>
           <td>{question.id}</td>
-          <td>{question.questions.ask}</td>
+          <td>
+            <Link to={`/${question.id}`}>
+              {question.questions.ask}
+            </Link>
+          </td>
           <td>✔</td>
         </tr>
       )}

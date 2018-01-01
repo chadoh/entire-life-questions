@@ -21,3 +21,8 @@
   padding-left: 0;
   padding-right: 0.5em;
 }
+.List a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
