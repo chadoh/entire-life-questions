@@ -1,0 +1,39 @@
+.App-title {
+  text-align: center;
+  line-height: 1;
+}
+.App-titleHighlight {
+  color: #84BC9C;
+  letter-spacing: 0.1em;
+}
+
+.App-p {
+  text-align: center;
+  max-width: 30em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.App-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.App-table th {
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+.App-table td {
+  padding: 0.3em 0;
+  border-bottom: 1px dashed #ddd;
+}
+.App-table th, .App-table td {
+  padding-left: 0.5em;
+}
+.App-table tr:hover td {
+  background-color: #efefef;
+}
+.App-table td:first-child {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 0.5em;
+}

@@ -1,5 +1,16 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+html {
+  color: #444;
+  font-size: calc(0.85em + 0.7vw);
+  line-height: 1.5;
 }
+
+body {
+  border: 0.5em solid #84BC9C;
+  margin: 0;
+  padding: 1em;
+  min-height: calc(100vh - 3em);
+}
+
+a { color: #2CA58D }
+a:hover, a:focus { color: #F46197 }
+a:active { color: #84BC9C }
