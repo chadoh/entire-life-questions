@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom'
+import List from './List'
 import './App.css';
 
 const API_ROOT = "https://entire-life.herokuapp.com"
@@ -34,24 +40,13 @@ class App extends Component {
       <p className="App-p">
         Sign in to add and edit questions.
       </p>
-      <table className="App-table">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>lead</th>
-            <th>active</th>
-          </tr>
-        </thead>
-        <tbody>
-          {questions.map((question, i) =>
-            <tr key={question.id}>
-              <td>{question.id}</td>
-              <td>{question.questions.ask}</td>
-              <td>✔</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <Router>
+        <Switch>
+          <Route exact match="/" render={() =>
+            <List questions={questions}/>
+          }/>
+        </Switch>
+      </Router>
     </React.Fragment>;
   }
 }

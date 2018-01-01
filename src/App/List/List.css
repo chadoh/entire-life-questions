@@ -1,0 +1,23 @@
+.List {
+  width: 100%;
+  border-collapse: collapse;
+}
+.List th {
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+.List td {
+  padding: 0.3em 0;
+  border-bottom: 1px dashed #ddd;
+}
+.List th, .List td {
+  padding-left: 0.5em;
+}
+.List tr:hover td {
+  background-color: #efefef;
+}
+.List td:first-child {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 0.5em;
+}
