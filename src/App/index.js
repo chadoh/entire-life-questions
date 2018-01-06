@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom'
+import ScrollToTop from './ScrollToTop'
 import Home from './Home'
 import Question from './Question'
 import * as Help from './Help'
@@ -37,18 +38,20 @@ class App extends Component {
     const { db, ids } = this.state;
     if (!db) return "Loading..."
     return <Router>
-      <Switch>
-        <Route exact path="/" render={() =>
-          <Home questions={ids.map(id => db[id])}/>
-        }/>
-        <Route exact path="/help/question-sets" component={Help.QuestionSets} />
-        <Route exact path="/help/templates" component={Help.Templates} />
-        <Route path="/:id" render={({match}) => {
-          const question = db[match.params.id];
-          if (!question) return <Redirect to="/" />;
-          return <Question {...question} />;
-        }}/>
-      </Switch>
+      <ScrollToTop>
+        <Switch>
+          <Route exact path="/" render={() =>
+            <Home questions={ids.map(id => db[id])}/>
+          }/>
+          <Route exact path="/help/question-sets" component={Help.QuestionSets} />
+          <Route exact path="/help/templates" component={Help.Templates} />
+          <Route path="/:id" render={({match}) => {
+            const question = db[match.params.id];
+            if (!question) return <Redirect to="/" />;
+            return <Question {...question} />;
+          }}/>
+        </Switch>
+      </ScrollToTop>
     </Router>
   }
 }
