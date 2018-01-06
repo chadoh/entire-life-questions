@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import Home from './Home'
 import Question from './Question'
+import * as Help from './Help'
 import './App.css';
 
 const API_ROOT = "https://entire-life.herokuapp.com"
@@ -40,6 +41,8 @@ class App extends Component {
         <Route exact path="/" render={() =>
           <Home questions={ids.map(id => db[id])}/>
         }/>
+        <Route exact path="/help/question-sets" component={Help.QuestionSets} />
+        <Route exact path="/help/templates" component={Help.Templates} />
         <Route path="/:id" render={({match}) => {
           const question = db[match.params.id];
           if (!question) return <Redirect to="/" />;

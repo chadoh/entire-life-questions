@@ -15,8 +15,8 @@ export default ({template, questions}) => <React.Fragment>
   <h2 className="Question-h2">Event Template</h2>
   <p>
     After someone answers this questions &amp; all follow-ups, an event will be
-    created that looks a bit like the following. Learn more about the
-    templating system.
+    created that looks a bit like the following. <Link to="/help/templates">
+    Learn more about the templating system</Link>.
   </p>
   <Editor
     onChange={change('template')}
@@ -29,7 +29,8 @@ export default ({template, questions}) => <React.Fragment>
     A question set forms a sort of flow chart. The answer to one question
     determines which question is shown next. Once the end of a flow is reached,
     the save button is shown. Clicking the save button fires a "save" event
-    with a filled-in event template.
+    with a filled-in event template. <Link to="/help/question-sets">Learn more
+    about Question Sets</Link>.
   </p>
   <Editor
     onChange={change('questions')}
