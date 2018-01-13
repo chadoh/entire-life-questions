@@ -12,7 +12,7 @@ body {
   border: 0.5em solid #84BC9C;
   margin: 0;
   padding: 1em;
-  min-height: calc(100vh - 3em);
+  min-height: 100vh;
 }
 
 a { color: #2CA58D }
