@@ -5,10 +5,14 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom'
+
+import Loader from './Loader'
+import SigningIn from './SigningIn'
 import ScrollToTop from './ScrollToTop'
 import Home from './Home'
 import Question from './Question'
 import * as Help from './Help'
+
 import './App.css';
 
 const API_ROOT = "https://entire-life.herokuapp.com"
@@ -35,16 +39,19 @@ class App extends Component {
   }
 
   render() {
-    const { db, ids } = this.state;
-    if (!db) return "Loading..."
+    const { db, ids, auth } = this.state;
+    if (!db) return <Loader />
     return <Router>
       <ScrollToTop>
         <Switch>
           <Route exact path="/" render={() =>
-            <Home questions={ids.map(id => db[id])}/>
+            <Home questions={ids.map(id => db[id])} auth={auth} />
           }/>
           <Route exact path="/help/question-sets" component={Help.QuestionSets} />
           <Route exact path="/help/templates" component={Help.Templates} />
+          <Route exact path="/signing-in" render={props =>
+            <SigningIn setData={this.setState.bind(this)} {...props} />
+          } />
           <Route path="/:id" render={({match}) => {
             const question = db[match.params.id];
             if (!question) return <Redirect to="/" />;

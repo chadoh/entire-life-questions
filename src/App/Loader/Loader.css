@@ -1,0 +1,7 @@
+.Loader {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 3rem); /* FIXME: brittle declaration relies on body padding */
+  justify-content: space-around;
+  text-align: center;
+}
