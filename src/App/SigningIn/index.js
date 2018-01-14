@@ -13,12 +13,8 @@ export default class SigningIn extends React.Component {
     const { setData, history } = this.props
     parseAuthenticationData((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        setData(
-          {auth: authResult},
-          () => history.replace('/')
-        )
-        console.log('now save this data', authResult)
-        // this.props.login(authResult, this.props.currentUser);
+        setData({auth: authResult})
+        history.replace('/')
       } else if (err) {
         console.error(err);
         history.replace('/');
