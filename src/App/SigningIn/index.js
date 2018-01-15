@@ -1,19 +1,18 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import {parseAuthenticationData} from '../auth0';
+import {parseAuthenticationData, setAuth} from '../auth';
 import Loader from '../Loader'
 
 export default class SigningIn extends React.Component {
   static propTypes = {
-    setData: propTypes.func,
     history: propTypes.object,
   };
 
   componentDidMount() {
-    const { setData, history } = this.props
+    const { history } = this.props
     parseAuthenticationData((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        setData({auth: authResult})
+        setAuth(authResult)
         history.replace('/')
       } else if (err) {
         console.error(err);

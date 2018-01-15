@@ -22,7 +22,6 @@ const API_ROOT = "https://entire-life.herokuapp.com"
 const initialState = {
   questions: null,
   questionIds: null,
-  auth: null,
 }
 
 const db = createDatabase('questions', initialState)
@@ -54,13 +53,13 @@ class App extends Component {
   }
 
   render() {
-    const { questions, questionIds, auth } = db.getData();
+    const { questions, questionIds } = db.getData();
     if (!questionIds) return <Loader />;
     return <Router>
       <ScrollToTop>
         <Switch>
           <Route exact path="/" render={() =>
-            <Home questions={questionIds.map(id => questions[id])} auth={auth} />
+            <Home questions={questionIds.map(id => questions[id])} />
           }/>
           <Route exact path="/help/question-sets" component={Help.QuestionSets} />
           <Route exact path="/help/templates" component={Help.Templates} />

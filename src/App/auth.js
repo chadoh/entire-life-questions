@@ -41,3 +41,32 @@ export const login = e => {
 export const parseAuthenticationData = cb =>
   authorizor.parseAuthenticationData(cb);
 
+export const setAuth = ({accessToken, idToken, expiresIn, idTokenPayload}) => {
+  const expiresAt = JSON.stringify((expiresIn * 1000) + new Date().getTime());
+  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem('idToken', idToken);
+  localStorage.setItem('expiresAt', expiresAt);
+  localStorage.setItem('userData', JSON.stringify(idTokenPayload));
+}
+
+export const logout = () => {
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('idToken');
+  localStorage.removeItem('expiresAt');
+  localStorage.removeItem('userData');
+}
+
+export const getUser = () => {
+  const userData = localStorage.getItem('userData');
+  if (!userData) return null;
+
+
+  const expiresAt = JSON.parse(localStorage.getItem('expiresAt'));
+  const expired = new Date().getTime() >= expiresAt;
+  if (expired) {
+    logout();
+    return false;
+  }
+
+  return JSON.parse(userData);
+}
