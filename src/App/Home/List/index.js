@@ -20,7 +20,7 @@ export default ({questions}) => (
               {question.questions.ask}
             </Link>
           </td>
-          <td>✔</td>
+          <td>{question.published ? '✔' : ''}</td>
         </tr>
       )}
     </tbody>
