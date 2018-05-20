@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import './List.css'
 
-export default ({questions}) => (
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+
+import './List.css'
+import Loader from '../../Loader'
+
+const List = ({data}) => data.loading ?  <Loader /> :
   <table className="List">
     <thead>
       <tr>
@@ -12,7 +17,7 @@ export default ({questions}) => (
       </tr>
     </thead>
     <tbody>
-      {questions.map((question, i) =>
+      {data.questionSets.map((question, i) =>
         <tr key={question.id}>
           <td>{question.id}</td>
           <td>
@@ -25,4 +30,15 @@ export default ({questions}) => (
       )}
     </tbody>
   </table>
-);
+
+const QUESTION_SETS_QUERY = gql`
+  query QuestionSetsQuery {
+    questionSets {
+      id
+      published
+      questions
+    }
+  }
+`
+
+export default graphql(QUESTION_SETS_QUERY)(List)

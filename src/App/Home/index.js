@@ -40,7 +40,7 @@ export default class Home extends React.Component {
           your life chart.
         </p>
         {this.paragraphForUser()}
-        <List questions={this.props.questions} />
+        <List />
       </React.Fragment>
     )
   }
