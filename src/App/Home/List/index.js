@@ -13,6 +13,7 @@ const List = ({data}) => data.loading ?  <Loader /> :
       <tr>
         <th>id</th>
         <th>lead</th>
+        <th>created by</th>
         <th>active</th>
       </tr>
     </thead>
@@ -25,6 +26,7 @@ const List = ({data}) => data.loading ?  <Loader /> :
               {question.questions.ask}
             </Link>
           </td>
+          <td>{question.user.name}</td>
           <td>{question.published ? '✔' : ''}</td>
         </tr>
       )}
@@ -37,6 +39,9 @@ const QUESTION_SETS_QUERY = gql`
       id
       published
       questions
+      user {
+        name
+      }
     }
   }
 `
