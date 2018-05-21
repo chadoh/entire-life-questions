@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import {parseAuthenticationData, setAuth} from '../auth';
+import {parseAuthenticationData, setAuth} from '../../auth';
 import Loader from '../Loader'
 
 export default class SigningIn extends React.Component {

@@ -70,3 +70,6 @@ export const getUser = () => {
 
   return JSON.parse(userData);
 }
+
+export const getToken = () => localStorage.getItem('accessToken')
+
