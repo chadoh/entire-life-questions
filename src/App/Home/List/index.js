@@ -33,7 +33,7 @@ const List = ({data}) => data.loading ?  <Loader /> :
     </tbody>
   </table>
 
-const QUESTION_SETS_QUERY = gql`
+export const QUESTION_SETS_QUERY = gql`
   query QuestionSetsQuery {
     questionSets {
       id

@@ -1,11 +1,11 @@
 import React from 'react'
-import List from './List'
+import List, { QUESTION_SETS_QUERY } from './List'
 
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import { getUser, login, logout } from '../../auth'
-
+import * as examples from './examples'
 
 class Home extends React.Component {
   state = {
@@ -17,36 +17,20 @@ class Home extends React.Component {
     this.setState({user: null})
   }
 
-  addQuestionSet = async () => {
-    const result = await this.props.add({
-      variables: {
-        questions: JSON.stringify({
-          "ask": "[example] When did something happen?",
-          "type": "DATE",
-          "set": "starting",
-          "then": {
-            "ask": "How did it make you feel?",
-            "choices": [
-              {
-                "text": "happy",
-                "set": { "emoji": ":smile:" }
-              },
-              {
-                "text": "sad",
-                "set": { "emoji": ":frowning:" }
-              }
-            ]
-          }
-        }),
-        template: JSON.stringify({
-          "title": "You can include the variables you set above in curly brackets in any of these fields",
-          "emoji": "{{emoji}}",
-          "starting": "{{starting}}",
-          "description": "You must include the above three attributes in the template. This one is optional, though."
-        })
-      }
+  addQuestionSet = () => {
+    this.props.addMutation({
+      variables: examples,
+      update: (store, { data: { questionSetAdd } }) => {
+        this.afterCreate(store, questionSetAdd)
+      },
     })
-    this.props.history.push(`/${result.data.questionSetAdd.id}`)
+  }
+
+  afterCreate = (store, questionSet) => {
+    const data = store.readQuery({ query: QUESTION_SETS_QUERY })
+    data.questionSets.push(questionSet)
+    store.writeQuery({ query: QUESTION_SETS_QUERY, data })
+    this.props.history.push(`/${questionSet.id}`)
   }
 
   paragraphForUser = () => {
@@ -101,8 +85,13 @@ const ADD_QUESTION_SET_MUTATION = gql`
       questions: $questions
     }) {
       id
+      published
+      questions
+      user {
+        name
+      }
     }
   }
 `
 
-export default graphql(ADD_QUESTION_SET_MUTATION, { name: 'add'})(Home)
+export default graphql(ADD_QUESTION_SET_MUTATION, { name: 'addMutation'})(Home)
