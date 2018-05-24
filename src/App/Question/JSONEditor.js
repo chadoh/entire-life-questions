@@ -15,11 +15,11 @@ const change = onChange => newValue => {
   if (!inError) onChange(newValue);
 }
 
-export default ({value, onChange, height}) => <Ace
+export default ({value, onChange, height, readOnly = true}) => <Ace
   mode="json"
   theme="tomorrow_night_eighties"
   width="100%"
-  readOnly
+  readOnly={readOnly}
   height={height}
   fontSize={16}
   tabSize={2}
