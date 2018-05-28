@@ -38,6 +38,9 @@ const QUESTION_SET_QUERY = gql`
       id
       questions
       template
+      user {
+        email
+      }
       # published
       # category
       # questions_proposal
