@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import { QuestionSet } from 'react-quizzical';
 import isEqual from 'lodash/isEqual'
 
-// import { withApollo } from 'react-apollo'
-// import gql from 'graphql-tag'
-
 import { getUser } from '../../auth'
 import Columns from '../Columns';
 import JSONEditor from './JSONEditor';
@@ -33,7 +30,10 @@ class Show extends React.Component {
   }
 
   save = () => {
-    console.log('save', this.state.questions, this.state.template)
+    this.props.onSave({
+      questions: this.state.questions,
+      template: this.state.template,
+    })
   }
 
   render() {
