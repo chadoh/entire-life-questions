@@ -4,6 +4,7 @@ import { QuestionSet } from 'react-quizzical';
 import isEqual from 'lodash/isEqual'
 
 import { getUser } from '../../auth'
+import * as localStorage from '../../localStorage'
 import Columns from '../Columns';
 import JSONEditor from './JSONEditor';
 import './Question.css'
@@ -14,26 +15,30 @@ class Show extends React.Component {
 
     const user = getUser()
 
+    const cachedChanges = localStorage.get(props.id) || {}
+
     this.state = {
       user,
       canEdit: user && user.email === props.user.email,
-      questions: props.questions,
-      template: props.template,
+      questions: cachedChanges.questions || props.questions,
+      template: cachedChanges.template || props.template,
     }
   }
 
   change = attr => newValue => {
     const value = JSON.parse(newValue)
     if (!isEqual(value, this.state[attr])) {
+      localStorage.set(this.props.id, { [attr]: value })
       this.setState({ [attr]: value })
     }
   }
 
-  save = () => {
-    this.props.onSave({
+  save = async () => {
+    await this.props.onSave({
       questions: this.state.questions,
       template: this.state.template,
     })
+    localStorage.rm(this.props.id)
   }
 
   render() {

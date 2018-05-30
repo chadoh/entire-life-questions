@@ -14,3 +14,7 @@ export const set = (key, state) => {
   const serializedState = JSON.stringify(state);
   localStorage.setItem(key, serializedState);
 }
+
+export const rm = key => {
+  localStorage.removeItem(key)
+}

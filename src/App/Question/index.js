@@ -25,9 +25,9 @@ class Wrap extends React.Component {
     })
   }
 
-  onSave = ({questions, template}) => {
+  onSave = async ({questions, template}) => {
     const { client } = this.props
-    client.mutate({
+    await client.mutate({
       mutation: UPDATE_QUESTION_SET_MUTATION,
       variables: {
         id: this.state.question.id,
