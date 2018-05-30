@@ -73,7 +73,10 @@ class Show extends React.Component {
             <p>
               After someone answers all the questions in the Question Set, an event will
               be created that looks a bit like the following. <Link
-              to="/help/templates">Learn more about the templating system</Link>.
+              to="/help/templates">Learn more about the templating
+              system</Link>. The emoji must be the name of a valid emoji from <a
+              href="https://missive.github.io/emoji-mart/">Emoji Mart</a> and
+              must contain the colons, like <code>:wave:</code>
             </p>
             <JSONEditor
               onChange={this.change('template')}
@@ -85,6 +88,12 @@ class Show extends React.Component {
 
           <div>
             <h2 className="Question-h2">Demo</h2>
+            <p style={{marginBottom: '1em', paddingBottom: '1em', borderBottom: '1px dashed silver'}}>
+              This is what your question set will look like. Play around with
+              it! When you press the Save button, you can open your <a target="_new"
+              href="https://developers.google.com/web/tools/chrome-devtools/console/">web
+              inspector</a>'s console to see what would be saved.
+            </p>
             <QuestionSet
               questions={questions}
               template={template}
